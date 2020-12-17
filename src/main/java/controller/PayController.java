@@ -2,6 +2,7 @@ package controller;
 
 import common.InvalidException;
 import domain.Menu;
+import domain.OrderRepository;
 import domain.Table;
 import java.util.List;
 import view.InputView;
@@ -30,5 +31,7 @@ public class PayController {
         final Table tableNumber = InputView.inputTableNumber();
         OutputView.printPayments();
         int payment = InputView.inputPayment();
+        double moneyToPay = OrderRepository.pay(tableNumber,payment);
+        System.out.println(moneyToPay);
     }
 }
