@@ -1,8 +1,11 @@
 package view;
 
+import common.Guide;
+import domain.MainScreen;
 import domain.Menu;
 import domain.Table;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class OutputView {
@@ -10,8 +13,13 @@ public class OutputView {
     private static final String TABLE_FORMAT = "| %s |";
     private static final String BOTTOM_LINE = "└ ─ ┘";
 
+    public static void printMainScreen(){
+        Guide.print("선택 화면");
+        Arrays.stream(MainScreen.values()).map(list -> list.getList()).forEach(System.out::println);
+    }
+
     public static void printTables(final List<Table> tables) {
-        System.out.println("## 테이블 목록");
+        Guide.print("테이블 목록");
         final int size = tables.size();
         printLine(TOP_LINE, size);
         printTableNumbers(tables);
