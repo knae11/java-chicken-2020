@@ -45,4 +45,12 @@ public class OutputView {
         }
         System.out.println();
     }
+
+    public static void printMenuSelectGuide(){
+        Guide.print("메뉴를 선택해 주세요. 1가지만 선택할 수 있습니다.");
+    }
+
+    public static void printMenuAmountGuide(){
+        Guide.print("해당 메뉴의 수량을 입력해 주세요.");
+    }
 }

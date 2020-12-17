@@ -59,6 +59,29 @@ public class InputView {
     }
 
     public static Menu inputMenu(){
+        OutputView.printMenuSelectGuide();
         return MenuRepository.findMenu(scanner.nextLine().trim());
+    }
+
+    public static int inputMenuAmount() {
+        OutputView.printMenuAmountGuide();
+        String amountInput = scanner.nextLine().trim();
+        return checkAmountNumber(amountInput);
+    }
+
+    private static int checkAmountNumber(String amountInput) {
+        try {
+            int amount = Integer.parseInt(amountInput);
+            checkValidAmount(amount);
+            return amount;
+        } catch (NumberFormatException n) {
+            throw new InvalidException("숫자를 입력해 주세요.");
+        }
+    }
+
+    private static void checkValidAmount(int amount) {
+        if(amount <0 || amount >99){
+            throw new InvalidException("1~99 사이의 값을 입력해 주세요");
+        }
     }
 }

@@ -21,15 +21,20 @@ public class OrderController {
     public void run() {
         while (true) {
             try {
-                OutputView.printTables(tables);
-                final Table tableNumber = InputView.inputTableNumber();
-                OutputView.printMenus(menus);
-                final Menu menuInput = InputView.inputMenu();
+                getOrder();
                 return;
             } catch (InvalidException invalidException) {
                 System.out.println(invalidException.getMessage());
             }
         }
+    }
+
+    private void getOrder() {
+        OutputView.printTables(tables);
+        final Table tableNumber = InputView.inputTableNumber();
+        OutputView.printMenus(menus);
+        final Menu menuInput = InputView.inputMenu();
+        final int amount = InputView.inputMenuAmount();
     }
 
 }
