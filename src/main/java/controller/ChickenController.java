@@ -1,13 +1,11 @@
 package controller;
 
-import common.InvalidException;
 import domain.MainScreen;
 import domain.Menu;
 import domain.MenuRepository;
 import domain.Table;
 import domain.TableRepository;
 import java.util.List;
-import org.omg.CORBA.DynAnyPackage.Invalid;
 import view.InputView;
 import view.OutputView;
 
@@ -18,8 +16,8 @@ public class ChickenController {
     final PayController payController;
 
     public ChickenController() {
-        orderController = new OrderController();
-        payController = new PayController();
+        orderController = new OrderController(tables, menus);
+        payController = new PayController(tables, menus);
     }
 
     public void run() {
@@ -43,12 +41,4 @@ public class ChickenController {
         }
     }
 
-    private void setting() {
-
-        OutputView.printTables(tables);
-
-        final int tableNumber = InputView.inputTableNumber();
-
-        OutputView.printMenus(menus);
-    }
 }

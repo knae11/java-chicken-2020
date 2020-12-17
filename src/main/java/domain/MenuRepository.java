@@ -1,8 +1,10 @@
 package domain;
 
+import common.InvalidException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 public class MenuRepository {
     private static final List<Menu> menus = new ArrayList<>();
@@ -21,4 +23,10 @@ public class MenuRepository {
     public static List<Menu> menus() {
         return Collections.unmodifiableList(menus);
     }
+
+    public static Menu findMenu(String menuInput) {
+        return menus.stream().filter(menu -> Objects.equals(menu.getName(), menuInput)).findFirst()
+            .orElseThrow(() -> new InvalidException("해당 메뉴는 찾을 수 없습니다."));
+    }
+
 }

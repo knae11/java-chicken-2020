@@ -3,6 +3,10 @@ package view;
 import common.Guide;
 import common.InvalidException;
 import domain.MainScreen;
+import domain.Menu;
+import domain.MenuRepository;
+import domain.Table;
+import domain.TableRepository;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.Scanner;
@@ -10,9 +14,19 @@ import java.util.Scanner;
 public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static int inputTableNumber() {
+    public static Table inputTableNumber() {
         Guide.print("주문할 테이블을 선택하세요.");
-        return scanner.nextInt();
+        String tableInput = scanner.nextLine().trim();
+        return checkTableNumber(tableInput);
+    }
+
+    private static Table checkTableNumber(String tableInput) {
+        try {
+            int table = Integer.parseInt(tableInput);
+            return TableRepository.findTable(table);
+        } catch (NumberFormatException n) {
+            throw new InvalidException("숫자를 입력해 주세요.");
+        }
     }
 
     public static int inputMainScreen() {
@@ -38,8 +52,13 @@ public class InputView {
     }
 
     private static void checkValidListSelection(int selection) {
-        if(!Arrays.stream(MainScreen.values()).anyMatch(value -> Objects.equals(value.getKey(), selection))){
+        if (Arrays.stream(MainScreen.values())
+            .noneMatch(value -> Objects.equals(value.getKey(), selection))) {
             throw new InvalidException("해당 범위 내의 입력을 해주세요.");
         }
+    }
+
+    public static Menu inputMenu(){
+        return MenuRepository.findMenu(scanner.nextLine().trim());
     }
 }
