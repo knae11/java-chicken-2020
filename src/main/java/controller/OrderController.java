@@ -3,6 +3,7 @@ package controller;
 import common.InvalidException;
 import domain.Menu;
 import domain.MenuRepository;
+import domain.OrderRepository;
 import domain.Table;
 import java.util.List;
 import view.InputView;
@@ -33,8 +34,9 @@ public class OrderController {
         OutputView.printTables(tables);
         final Table tableNumber = InputView.inputTableNumber();
         OutputView.printMenus(menus);
-        final Menu menuInput = InputView.inputMenu();
+        final Menu menu = InputView.inputMenu();
         final int amount = InputView.inputMenuAmount();
+        OrderRepository.addOrder(tableNumber, menu, amount);
     }
 
 }
