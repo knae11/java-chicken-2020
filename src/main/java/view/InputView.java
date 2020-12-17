@@ -5,6 +5,7 @@ import common.InvalidException;
 import domain.MainScreen;
 import domain.Menu;
 import domain.MenuRepository;
+import domain.Payment;
 import domain.Table;
 import domain.TableRepository;
 import java.util.Arrays;
@@ -14,8 +15,20 @@ import java.util.Scanner;
 public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
 
+    public static int inputMainScreen() {
+        while (true) {
+            try {
+                Guide.print("할 일을 선택하세요.");
+                String selection = scanner.nextLine().trim();
+                return checkMainScreen(selection);
+            } catch (InvalidException invalidException) {
+                System.out.println(invalidException.getMessage());
+            }
+        }
+    }
+
     public static Table inputTableNumber() {
-        Guide.print("주문할 테이블을 선택하세요.");
+        Guide.print("테이블을 선택하세요.");
         String tableInput = scanner.nextLine().trim();
         return checkTableNumber(tableInput);
     }
@@ -29,15 +42,24 @@ public class InputView {
         }
     }
 
-    public static int inputMainScreen() {
-        while (true) {
-            try {
-                Guide.print("할 일을 선택하세요.");
-                String selection = scanner.nextLine().trim();
-                return checkMainScreen(selection);
-            } catch (InvalidException invalidException) {
-                System.out.println(invalidException.getMessage());
-            }
+    public static int inputPayment() {
+        String paymentInput = scanner.nextLine().trim();
+        return checkPaymentNumber(paymentInput);
+    }
+
+    private static int checkPaymentNumber(String paymentInput) {
+        try {
+            int payment = Integer.parseInt(paymentInput);
+            checkPayment(payment);
+            return payment;
+        } catch (NumberFormatException n){
+            throw new InvalidException("숫자를 입력해 주세요.");
+        }
+    }
+
+    private static void checkPayment(int paymentInput) {
+        if (Arrays.stream(Payment.values()).noneMatch(value -> value.getKey() == paymentInput)) {
+            throw new InvalidException("해당 범위 내의 입력을 해주세요.");
         }
     }
 
@@ -58,7 +80,7 @@ public class InputView {
         }
     }
 
-    public static Menu inputMenu(){
+    public static Menu inputMenu() {
         OutputView.printMenuSelectGuide();
         return MenuRepository.findMenu(scanner.nextLine().trim());
     }
@@ -80,7 +102,7 @@ public class InputView {
     }
 
     private static void checkValidAmount(int amount) {
-        if(amount <0 || amount >99){
+        if (amount < 0 || amount > 99) {
             throw new InvalidException("1~99 사이의 값을 입력해 주세요");
         }
     }

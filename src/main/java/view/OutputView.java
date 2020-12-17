@@ -3,6 +3,7 @@ package view;
 import common.Guide;
 import domain.MainScreen;
 import domain.Menu;
+import domain.Payment;
 import domain.Table;
 
 import java.util.Arrays;
@@ -16,6 +17,10 @@ public class OutputView {
     public static void printMainScreen(){
         Guide.print("선택 화면");
         Arrays.stream(MainScreen.values()).map(list -> list.getList()).forEach(System.out::println);
+    }
+    public static void printPayments(){
+        Guide.print("결제 목록");
+        Arrays.stream(Payment.values()).map(list -> list.getList()).forEach(System.out::println);
     }
 
     public static void printTables(final List<Table> tables) {
