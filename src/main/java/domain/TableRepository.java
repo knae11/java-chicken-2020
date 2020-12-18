@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class TableRepository {
-    private static final List<Table> tables = new ArrayList<>();
+    private static List<Table> tables = new ArrayList<>();
 
     static {
         tables.add(new Table(1));

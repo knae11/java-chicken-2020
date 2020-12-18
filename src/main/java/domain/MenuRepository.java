@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class MenuRepository {
-    private static final List<Menu> menus = new ArrayList<>();
+    private static List<Menu> menus = new ArrayList<>();
 
     static {
         menus.add(new Menu(1, "후라이드", Category.CHICKEN, 16_000));
