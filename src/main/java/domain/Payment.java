@@ -1,7 +1,7 @@
 package domain;
 
 public enum Payment {
-    CARD(1,". 신용카드"), CASH(2,". 현금");
+    CARD(1, ". 신용카드"), CASH(2, ". 현금");
     private final int key;
     private final String content;
 
@@ -10,11 +10,11 @@ public enum Payment {
         this.content = content;
     }
 
-    public int getKey(){
+    public int getKey() {
         return key;
     }
 
-    public String getList(){
-        return key+content;
+    public String getList() {
+        return key + content;
     }
 }

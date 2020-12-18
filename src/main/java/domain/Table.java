@@ -12,7 +12,7 @@ public class Table {
         return Integer.toString(number);
     }
 
-    public int getNumber(){
+    public int getNumber() {
         return number;
     }
 }

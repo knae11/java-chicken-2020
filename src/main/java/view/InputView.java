@@ -52,7 +52,7 @@ public class InputView {
             int payment = Integer.parseInt(paymentInput);
             checkPayment(payment);
             return payment;
-        } catch (NumberFormatException n){
+        } catch (NumberFormatException n) {
             throw new InvalidException("숫자를 입력해 주세요.");
         }
     }

@@ -18,10 +18,10 @@ public class OrderRepository {
             .collect(Collectors.toList());
         int sumOfAmount = orderOfTheTable.stream().mapToInt(order -> order.getAmount()).sum();
         int sumOfPrice = orderOfTheTable.stream().mapToInt(order -> order.getPrice()).sum();
-        if(sumOfAmount>9){
-            sumOfPrice -= 10000*(sumOfAmount/10);
+        if (sumOfAmount > 9) {
+            sumOfPrice -= 10000 * (sumOfAmount / 10);
         }
-        if(payment == Payment.CASH.getKey()){
+        if (payment == Payment.CASH.getKey()) {
             sumOfPrice *= 0.95;
         }
         return sumOfPrice;

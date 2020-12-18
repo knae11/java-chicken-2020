@@ -11,11 +11,13 @@ import view.OutputView;
 public class PayController {
     final List<Table> tables;
     final List<Menu> menus;
-    public PayController(List<Table> tables, List<Menu> menus){
+
+    public PayController(List<Table> tables, List<Menu> menus) {
         this.tables = tables;
         this.menus = menus;
     }
-    public void run(){
+
+    public void run() {
         while (true) {
             try {
                 getPayment();
@@ -31,7 +33,8 @@ public class PayController {
         final Table tableNumber = InputView.inputTableNumber();
         OutputView.printPayments();
         int payment = InputView.inputPayment();
-        double moneyToPay = OrderRepository.pay(tableNumber,payment);
+        double moneyToPay = OrderRepository.pay(tableNumber, payment);
         System.out.println(moneyToPay);
     }
+
 }
