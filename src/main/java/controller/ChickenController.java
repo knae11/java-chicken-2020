@@ -10,12 +10,12 @@ import view.InputView;
 import view.OutputView;
 
 public class ChickenController {
-    private final List<Table> tables = TableRepository.tables();
-    private final List<Menu> menus = MenuRepository.menus();
     private final OrderController orderController;
     private final PayController payController;
 
     public ChickenController() {
+        List<Table> tables = TableRepository.tables();
+        List<Menu> menus = MenuRepository.menus();
         orderController = new OrderController(tables, menus);
         payController = new PayController(tables, menus);
     }
